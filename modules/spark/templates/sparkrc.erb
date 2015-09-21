@@ -1,0 +1,8 @@
+PATH=$PATH:<%= @spark_home %>/bin
+
+#alias myIp="ifconfig eth1 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
+
+alias spark_master='<%= @spark_home %>/sbin/start-master.sh'
+alias spark_slave='<%= @spark_home %>/sbin/start-slave.sh spark://<%= @fqdn %>:7077'
+
+

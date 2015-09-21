@@ -1,0 +1,8 @@
+spark.master                     spark://<%= @fqdn %>:7077
+spark.eventLog.enabled           true
+spark.eventLog.dir               <%= @hdfs_path %>
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.driver.memory              <%= @spark_driver_memory %>
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails
+
+spark.history.fs.logDirectory	 <%= @spark_logs_basedir %>

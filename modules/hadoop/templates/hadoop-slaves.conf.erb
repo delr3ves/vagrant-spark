@@ -1,0 +1,24 @@
+#!upstart
+description "HadoopSlave"
+author "delr3ves"
+
+start on startup
+stop on shutdown
+
+script
+	<%= @hadoop_home%>/bin/start-hadoop-slaves.sh
+	echo $$ > /var/run/hadoop-slave.pid
+
+end script
+
+pre-start script
+	echo "[`date -u +%Y-%m-%dT%T.%3NZ`] (sys) Starting" >> /var/log/hadoop-slave.log
+end script
+
+pre-stop script
+	<%= @hadoop_home%>/bin/stop-hadoop-slaves.sh
+	rm /var/run/hadoop-slave.pid
+	echo "[`date -u +%Y-%m-%dT%T.%3NZ`] (sys) Stopping" >> /var/log/hadoop-slave.log
+end script
+
+
